@@ -2043,10 +2043,14 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
         startGamePacket.levelId = "";
         startGamePacket.worldName = this.getServer().getNetwork().getName();
         startGamePacket.generator = 1; //0 old, 1 infinite, 2 flat
-        this.dataPacket(startGamePacket);
+        //this.dataPacket(startGamePacket);
 
-        this.dataPacket(new BiomeDefinitionListPacket());
-        this.dataPacket(new AvailableEntityIdentifiersPacket());
+        BiomeDefinitionListPacket pk1 = new BiomeDefinitionListPacket();
+        //this.dataPacket(new BiomeDefinitionListPacket());
+        AvailableEntityIdentifiersPacket pk2 = new AvailableEntityIdentifiersPacket();
+        //this.dataPacket(new AvailableEntityIdentifiersPacket());
+
+        this.server.batchPackets(new Player[]{this}, new DataPacket[]{startGamePacket, pk1, pk2}, true); // order
 
         this.loggedIn = true;
 
