@@ -1494,7 +1494,7 @@ public abstract class Entity extends Location implements Metadatable {
     }
 
     public final void scheduleUpdate() {
-        this.level.updateEntities.put(this.id, this);
+        //this.level.updateEntities.put(this.id, this);
     }
 
     public boolean isOnFire() {

@@ -1424,9 +1424,9 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
 
     protected void checkNearEntities() {
         for (Entity entity : this.level.getNearbyEntities(this.boundingBox.grow(1, 0.5, 1), this)) {
-            entity.scheduleUpdate();
+            //entity.scheduleUpdate();
 
-            if (!entity.isAlive() || !this.isAlive()) {
+            if (entity==null || !entity.isAlive() || !this.isAlive()) {
                 continue;
             }
 
