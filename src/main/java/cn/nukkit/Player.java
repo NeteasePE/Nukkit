@@ -4998,6 +4998,11 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
     }
 
     @Override
+    public boolean doesTriggerPressurePlate() {
+        return this.gamemode != SPECTATOR;
+    }
+
+    @Override
     public String toString() {
         return "Player(name='" + getName() +
                 "', location=" + super.toString() +
