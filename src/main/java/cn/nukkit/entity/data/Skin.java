@@ -47,7 +47,7 @@ public class Skin {
     private String capeId;
     private String skinColor = "#0";
     private String armSize = "wide";
-    private boolean trusted = false;
+    private boolean trusted;
 
     public boolean isValid() {
         return isValidSkin() && isValidResourcePatch();
