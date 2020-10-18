@@ -913,9 +913,6 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
         //todo Updater
 
         //Weather
-        if (this.level.isRaining() || this.level.isThundering()) {
-            this.getLevel().sendWeather(this);
-        }
         this.getLevel().sendWeather(this);
 
         //FoodLevel
@@ -3918,7 +3915,9 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
 
             if (!ev.getKeepInventory() && this.level.getGameRules().getBoolean(GameRule.DO_ENTITY_DROPS)) {
                 for (Item item : ev.getDrops()) {
-                    this.level.dropItem(this, item, null, true, 40);
+                    if (!item.hasEnchantment(Enchantment.ID_VANISHING_CURSE)) {
+                        this.level.dropItem(this, item, null, true, 40);
+                    }
                 }
 
                 if (this.inventory != null) {
