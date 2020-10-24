@@ -243,7 +243,7 @@ public class Server {
 
     private DB nameLookup;
 
-    private PlayerDataSerializer playerDataSerializer = new DefaultPlayerDataSerializer(this);
+    private PlayerDataSerializer playerDataSerializer;
 
     Server(final String filePath, String dataPath, String pluginPath, String predefinedLanguage) {
         Preconditions.checkState(instance == null, "Already initialized!");
@@ -269,6 +269,8 @@ public class Server {
         this.console = new NukkitConsole(this);
         this.consoleThread = new ConsoleThread();
         this.consoleThread.start();
+
+        this.playerDataSerializer = new DefaultPlayerDataSerializer(this);
 
         //todo: VersionString 现在不必要
 
