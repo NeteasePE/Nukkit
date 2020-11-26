@@ -1573,6 +1573,13 @@ public abstract class Entity extends Location implements Metadatable {
         }
 
         float damage = (float) Math.floor(fallDistance - 3 - (this.hasEffect(Effect.JUMP) ? this.getEffect(Effect.JUMP).getAmplifier() + 1 : 0));
+
+        Block down = this.level.getBlock(this.floor().down());
+
+        if(down instanceof BlockHayBale) {
+            damage -= (damage * 0.8f);
+        }
+
         if (damage > 0) {
             if (!this.isPlayer || level.getGameRules().getBoolean(GameRule.FALL_DAMAGE)) {
                 this.attack(new EntityDamageEvent(this, DamageCause.FALL, damage));
@@ -1580,7 +1587,6 @@ public abstract class Entity extends Location implements Metadatable {
         }
 
         if (fallDistance > 0.75) {
-            Block down = this.level.getBlock(this.floor().down());
 
             if (down.getId() == Item.FARMLAND) {
                 Event ev;
